@@ -1,0 +1,29 @@
+version: "3"
+services:
+
+      client-server:
+        build: ./
+        container_name: client-server
+        restart: always
+        ports:
+          - "3000:3000"
+          - "3001:3001"
+        depends_on:
+          - database
+        networks:
+          - mern-chat
+      
+      database:
+        image: mongo
+        container_name: mongodb
+        ports:
+          - "27017:27017"
+        volumes:
+          - /database:/data/db
+        networks:
+          - mern-chat
+
+networks:
+  mern-chat:
+    driver: bridge
+

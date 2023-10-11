@@ -16,7 +16,7 @@ app.use(express.json());
 app.use(morgan("dev"));
 app.use(express.static(__dirname + "/uploads"));
 connectDB();
-app.use("/api/user", userRoutes);
+app.use("/api/user", userRoutes); 
 app.use("/api/chat", chatRoutes);
 app.use("/api/message", messageRoutes);
 app.use(notFound);
@@ -29,7 +29,7 @@ app.get("/", (req, res) => {
 const io = require("socket.io")(server, {
   pingTimeout: 10000,
   cors: {
-    origin: "http://localhost:3000",
+    origin: "http://client",
   },
 });
 

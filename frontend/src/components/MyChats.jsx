@@ -2,7 +2,7 @@ import { useChatContext } from '../context/ChatProvider'
 import { Avatar, Box, Button, Stack, Text, useToast } from '@chakra-ui/react';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { BsBoxArrowInLeft, BsPlus } from 'react-icons/bs';
+import {  BsPlus } from 'react-icons/bs';
 import ChatLoading from './ChatLoading';
 import { getLatestMessageSender, getSender, getSenderAvatar } from '../config/ChatLogics';
 import GroupChatModal from '../miscellaneous/GroupChatModal';
