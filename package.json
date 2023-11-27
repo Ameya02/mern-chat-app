@@ -6,7 +6,7 @@
   "scripts": {
     "back": "nodemon backend/server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "server": "nodemon run backend/server.js",
+    "server": "node run backend/server.js",
     "client": "npm run dev --prefix ./frontend",
     "dev": "concurrently \"npm run server\" \"npm run client\""
   },
