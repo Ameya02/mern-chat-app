@@ -9,8 +9,8 @@ const sendMessage = asyncHandler(async (req,res) =>{
     const {content,chatId} = req.body;
     if(!content || !chatId)
     {
-        console.log("Inavlid data passed into request!!");
-        return res.sendStatus(400).send();
+        throw new Error("Inavlid data passed into request!!");
+     
     }
 
     var newMessage = {
@@ -33,7 +33,6 @@ const sendMessage = asyncHandler(async (req,res) =>{
         });
         res.json(message);
     } catch (error) {
-        res.status(400);
         throw new Error(error.message);
     }
 })
@@ -42,8 +41,7 @@ const sendMessageFile = asyncHandler(async (req,res) =>{
     const {file,chatId} = req.body;
     if(!file || !chatId)
     {
-        console.log("Inavlid data passed into request!!");
-        return res.sendStatus(400).send();
+        throw new Error ("Inavlid data passed into request!!");
     }
     fs.writeFile("../uploads/"+file,file.data)
     try{
@@ -54,24 +52,7 @@ const sendMessageFile = asyncHandler(async (req,res) =>{
                 throw new Error(error.message);
     }
     
-//     try {
-//         var message = await Message.create(newMessage);
 
-//         message = await message.populate("sender","name pic");
-//         message = await message.populate("chat");
-//         message = await User.populate(message,{
-//             path:"chat.users",
-//             select:"name pic email",
-//         });
-
-//         await Chat.findByIdAndUpdate(req.body.chatId, {
-//             latestMessage:message,
-//         });
-//         res.json(message);
-//     } catch (error) {
-//         res.status(400);
-//         throw new Error(error.message);
-//     }
 })
 
 
@@ -80,7 +61,6 @@ const receiveMessage = asyncHandler(async ( req,res) => {
        const messages = await Message.find({ chat: req.params.chatId }).populate("sender","name pic email").populate("chat") 
        res.json(messages)
     } catch (error) {
-        res.status(400)
         throw new Error("Message not found")
     }
 })

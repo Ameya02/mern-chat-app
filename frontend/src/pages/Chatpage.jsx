@@ -7,7 +7,6 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 const Chatpage = () => {
   const {user}  = useChatContext();
-
   const [fetchAgain, setFetchAgain] = useState(false)
   const navigate = useNavigate()
   useEffect(()=>{

@@ -6,13 +6,11 @@ const registerUser = asyncHandler(async (req,res) => {
 
     if(!name || !email || !password)
     {
-        res.status(400);
         throw new Error("Please Enter all the fields");
 
     }
     const userExists = await User.findOne({ email: email });
     if(userExists) {
-        res.status(400);
         throw new Error("User already exists");
     }
     const user = await  User.create({ name: name, email: email, password: password, pic:pic });
@@ -26,7 +24,6 @@ const registerUser = asyncHandler(async (req,res) => {
         });
     }
     else{
-        res.status(400);
         throw new Error("Failed to create user");
     }
 
@@ -46,7 +43,6 @@ const authUser = asyncHandler(async(req,res) => {
         });
     }
     else{
-        res.status(400);
         throw new Error("User does not exist")
     }
 })

@@ -9,7 +9,6 @@ dotenv.config();
 const app = express();
 const Port = process.env.PORT || 3001;
 const connectDB = require("./config/db");
-app.use(require("morgan")("dev"))
 app.use(express.json());
 app.use(express.static(__dirname + "/uploads"));
 connectDB();
@@ -38,7 +37,7 @@ io.on("connection", (socket) => {
     socket.join(userData._id);
     socket.emit("connection");
   });
-
+ 
   socket.on("join", (chat) => {
     socket.join(chat);
   });
