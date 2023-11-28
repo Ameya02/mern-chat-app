@@ -4,7 +4,7 @@ export default ({ mode }) => {
 
   const env = loadEnv(mode, process.cwd());
 
-  const API_URL = `${env.VITE_API_URL ?? 'http://localhost:3001'}`;
+  const API_URL = `${env.VITE_API_URL || 'http://localhost:3001'}`;
   // https://vitejs.dev/config/
 return defineConfig({
   plugins: [react()],

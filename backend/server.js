@@ -9,21 +9,22 @@ dotenv.config();
 const app = express();
 const Port = process.env.PORT || 3001;
 const connectDB = require("./config/db");
-
+app.use(require("morgan")("dev"))
 app.use(express.json());
 app.use(express.static(__dirname + "/uploads"));
 connectDB();
+app.get("/", (req, res) => {
+  res.send("API are running");
+});
 app.use("/api/user", userRoutes); 
 app.use("/api/chat", chatRoutes);
 app.use("/api/message", messageRoutes);
 app.use(notFound);
 app.use(errorHandler);
 const client_url = process.env.CLIENT_URL  || "http://localhost:3000";
+
 const server = app.listen(Port, console.log("listening on port", Port));
-app.get("/", (req, res) => {
-  console.log("API are running");
-  res.send("API are running");
-});
+
 
 const io = require("socket.io")(server, {
   pingTimeout: 10000,

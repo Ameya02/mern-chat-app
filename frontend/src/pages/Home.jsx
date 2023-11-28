@@ -27,8 +27,8 @@ config
 
      if (user) {
       changeStatus(user)
-      navigate("/chats")}
-  }, [navigate])
+      window.location.href = "/chats"}
+  }, [])
   
   return (
     <Container maxW="xl" centerContent>
